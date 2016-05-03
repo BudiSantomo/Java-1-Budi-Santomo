@@ -1,0 +1,53 @@
+package com.example.santomo.toast;
+
+import android.content.DialogInterface;
+import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
+
+public class MainActivity extends AppCompatActivity {
+
+    //deklarasikan dulu variabel lo disini
+    private Button toastButton;
+    private Button alertButton;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        //ke dua
+        toastButton = (Button) findViewById(R.id.btn_toast);
+        toastButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast toast = Toast.makeText(getApplicationContext(),"Budi Santomo,S.T",Toast.LENGTH_SHORT);
+                toast.show();
+            }
+        });
+
+        //ke 3
+        alertButton = (Button) findViewById(R.id.btn_alert);
+        alertButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                builder.setMessage("Perhatian pak budi bisa")
+                        .setTitle("Dialog Example")
+                        .setPositiveButton("Okeh", new DialogInterface.OnClickListener(){
+                            //.setNegativeButton("Ora", new DialogInterface.OnClickListener(){
+                            @Override
+                            public void onClick(DialogInterface dialog, int which){
+                                dialog.cancel();
+                            }
+                        });
+                AlertDialog dialog = builder.create();
+                dialog.show();
+            }
+        });
+
+    }
+}
